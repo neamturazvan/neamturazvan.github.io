@@ -43,7 +43,6 @@ export const links = {
     href: "https://www.linkedin.com/in/r%C4%83zvan-%C8%99tefan-neam%C8%9Bu-837a68422/",
     placeholder: "LinkedIn profile not added yet",
   },
-  cv: { label: "Download CV", href: null, placeholder: "CV not added yet" },
 } satisfies Record<string, ExternalLink>;
 export const siteConfig = {
   origin: "https://neamturazvan.github.io",
@@ -60,6 +59,10 @@ export const repositories: Record<
     demo: null,
   },
   huffman: { github: "https://github.com/neamturazvan/HuffZip", demo: null },
+  "adt-graph": {
+    github: "https://github.com/neamturazvan/ADTGraph",
+    demo: null,
+  },
 };
 export const currentActivities = [
   "Developing stronger practical machine-learning skills",
@@ -90,4 +93,3 @@ export const interests = [
   "Engineering systems",
   "Telemetry & motorsport technology",
 ];
-

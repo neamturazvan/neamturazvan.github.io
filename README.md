@@ -21,7 +21,7 @@ pnpm typecheck
 pnpm build
 ```
 
-The deployable static site is in `out/`. Use a static host that serves directory indexes for `/projects/c-ml/`, `/projects/image-processing/`, and `/projects/huffman/`. The custom 404 page is `out/404.html`. There is no application server, database, API key, or contact-form backend.
+The deployable static site is in `out/`. Use a static host that serves directory indexes for `/projects/c-ml/`, `/projects/image-processing/`, `/projects/huffman/`, and `/projects/adt-graph/`. The custom 404 page is `out/404.html`. There is no application server, database, API key, or contact-form backend.
 
 ## Edit personal information
 
@@ -31,20 +31,20 @@ The deployable static site is in `out/`. Use a static host that serves directory
 - `app/page.tsx`: introduction and homepage composition.
 - `app/globals.css`: theme tokens, layout, typography, responsive rules, and reduced-motion behavior.
 
-### Contact details and CV
+### Contact details
 
-Email, GitHub, and LinkedIn use the supplied contact details. The CV remains `null` until it is ready. Place it in `public/cv.pdf` and set `links.cv.href` to `/cv.pdf`, or use its hosted URL. Missing destinations display “Not added yet” and are not fake clickable links.
+Email, GitHub, and LinkedIn use the supplied contact details. No CV entry is displayed. Missing destinations display “Not added yet” and are not fake clickable links.
 
-Repository and optional demo URLs belong in `repositories` in `data/profile.ts`. MLC, GrayLib, and HuffZip link to their actual repositories. Project years and unspecified project statuses are `null`, so they are omitted. MLC is marked “Completed,” as confirmed by its author, and is no longer listed as current work.
+Repository and optional demo URLs belong in `repositories` in `data/profile.ts`. MLC, GrayLib, HuffZip, and ADTGraph link to their actual repositories. Project years and unspecified project statuses are `null`, so they are omitted. MLC is marked “Completed,” as confirmed by its author, and is no longer listed as current work.
 
-All three case studies are populated from repository documentation and implementation code. They cover motivation, operation, architecture, design decisions, engineering constraints, and learning takeaways. Their tests are described from the repositories; the portfolio update did not independently execute those C/C++ test suites. Graphics remain conceptual illustrations, not measured results. The optional `placeholder` flag is retained for future draft projects.
+All four case studies are populated from repository documentation and implementation code. They cover motivation, operation, architecture, design decisions, engineering constraints, and learning takeaways. Their tests are described from the repositories; the portfolio update did not independently execute those project test suites. Graphics remain conceptual illustrations, not measured results. The optional `placeholder` flag is retained for future draft projects.
 
 The configured origin is the intended GitHub Pages URL. If you move to your own domain, update `siteConfig.origin` and rebuild; canonical URLs, sitemap, and social metadata will follow it. Open Graph and Twitter text metadata are included. No social-preview image is assumed.
 
 ## Add a project
 
 1. Add a URL entry keyed by the new slug to `repositories` in `data/profile.ts`.
-2. Add one `Project` record to `data/projects.ts`. Choose the `network`, `pixels`, or `tree` visualization; set the description, technologies, status, year, featured flag, and case-study sections.
+2. Add one `Project` record to `data/projects.ts`. Choose the `network`, `pixels`, `tree`, or `graph` visualization; set the description, technologies, status, year, featured flag, and case-study sections.
 3. Rebuild. The homepage, detail route, related-project navigation, and sitemap use the same data automatically. Any number of projects is supported; multiple featured projects span the grid.
 
 Core components are `Header`, `Footer`, `ProjectCard`, `ComputationalVisual`, `ProfileSections`, and `ExternalLink`. `app/projects/[slug]/page.tsx` is the shared case-study template.
@@ -63,7 +63,7 @@ Add `app/notes/page.tsx`, `app/notes/[slug]/page.tsx`, and a `content/notes/` di
 
 ## GitHub Pages deployment
 
-This copy is prepared for the public repository `neamturazvan/neamturazvan.github.io`, with the intended address `https://neamturazvan.github.io`. It has not been uploaded or deployed yet.
+This project targets the public repository `neamturazvan/neamturazvan.github.io` and the address `https://neamturazvan.github.io`.
 
 Create that repository, push these files to its `main` branch, and select **GitHub Actions** in **Settings → Pages → Build and deployment → Source**. The included `.github/workflows/deploy.yml` installs dependencies, runs lint and the production build, and deploys `out/`. Later pushes to `main` update the site automatically. No custom domain or paid hosting plan is required for this public repository.
 

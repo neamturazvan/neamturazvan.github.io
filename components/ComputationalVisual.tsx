@@ -1,4 +1,4 @@
-type Props = { kind?: "network" | "pixels" | "tree"; hero?: boolean };
+type Props = { kind?: "network" | "pixels" | "tree" | "graph"; hero?: boolean };
 export function ComputationalVisual({ kind = "network", hero = false }: Props) {
   if (kind === "pixels")
     return (
@@ -14,6 +14,64 @@ export function ComputationalVisual({ kind = "network", hero = false }: Props) {
           );
         })}
       </div>
+    );
+  if (kind === "graph")
+    return (
+      <svg
+        className="tree-art"
+        viewBox="0 0 560 260"
+        fill="none"
+        aria-hidden="true"
+      >
+        <g stroke="currentColor" opacity=".45">
+          <path d="M75 130 200 55 350 65 485 130 350 210 200 205 75 130M200 55 200 205 350 65M200 205 485 130M350 65 350 210" />
+        </g>
+        <path
+          d="M75 130 200 55 350 65 485 130"
+          stroke="var(--accent)"
+          strokeWidth="2"
+        />
+        {[
+          [75, 130, "A"],
+          [200, 55, "B"],
+          [350, 65, "C"],
+          [485, 130, "D"],
+          [200, 205, "E"],
+          [350, 210, "F"],
+        ].map(([x, y, label]) => (
+          <g key={label}>
+            <circle
+              cx={x}
+              cy={y}
+              r="17"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text
+              x={x}
+              y={y}
+              dy=".35em"
+              textAnchor="middle"
+              fill="currentColor"
+              fontFamily="monospace"
+              fontSize="12"
+            >
+              {label}
+            </text>
+          </g>
+        ))}
+        <g fill="var(--accent)" fontFamily="monospace" fontSize="12">
+          <text x="126" y="78">
+            2
+          </text>
+          <text x="273" y="44">
+            3
+          </text>
+          <text x="419" y="84">
+            1
+          </text>
+        </g>
+      </svg>
     );
   if (kind === "tree")
     return (

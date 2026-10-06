@@ -37,7 +37,9 @@ export function ProjectCard({
             ? "Conceptual network · not training results"
             : project.visual === "pixels"
               ? "Grayscale study · illustrative"
-              : "Binary tree · illustrative"}
+              : project.visual === "graph"
+                ? "Graph traversal · illustrative"
+                : "Binary tree · illustrative"}
         </span>
       </div>
     </article>

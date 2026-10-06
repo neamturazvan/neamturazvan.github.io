@@ -14,7 +14,7 @@ export type Project = {
   status: string | null;
   github: string | null;
   demo?: string | null;
-  visual: "network" | "pixels" | "tree";
+  visual: "network" | "pixels" | "tree" | "graph";
   image?: string;
   featured: boolean;
   year: number | null;
@@ -163,6 +163,54 @@ export const projects: Project[] = [
         title: "What I learned",
         content:
           "The tree algorithm and the binary format have to agree at every boundary: symbol values, bit order, tree structure, and end-of-file handling. Building the full round trip connects abstract data structures to practical serialization. It also makes clear why automated tests need unusual byte patterns and malformed files, not just a successful example with readable text.",
+      },
+    ],
+  },
+  {
+    slug: "adt-graph",
+    title: "Graph ADT & Algorithms",
+    tagline: "Connections, explored from first principles.",
+    shortDescription:
+      "ADTGraph: a Python graph abstract data type with traversals, shortest paths, and structural algorithms.",
+    fullDescription:
+      "ADTGraph is a first-year Python project implementing directed and undirected graphs, with optional edge weights and handwritten graph algorithms. It combines a mutable graph API, BFS and DFS iterators, text-file storage, and automated tests using only the Python standard library.",
+    technologies: ["Python", "Graph Algorithms", "Data Structures"],
+    status: null,
+    ...repositories["adt-graph"],
+    visual: "graph",
+    featured: false,
+    year: null,
+    domain: "Graph algorithms",
+    sections: [
+      {
+        title: "Motivation",
+        content:
+          "Implementing a graph abstract data type makes the connection between representation and algorithms explicit. The project brings together vertex and edge operations, traversal, and pathfinding in one small library, exposing the work that a ready-made graph package would usually handle.",
+      },
+      {
+        title: "How it works",
+        content:
+          "Graphs can be constructed in memory or read from text files. BFS and DFS iterators explore reachable vertices and retain paths. Dijkstra and Euclidean A* find shortest paths, while topological sorting, Kosaraju's strongly connected components, bridges, and bipartite checks examine graph structure. Exact maximum-clique and travelling-salesperson searches cover small graphs.",
+      },
+      {
+        title: "Architecture",
+        content:
+          "domain/Graph.py owns the graph representation and algorithms, using dictionaries of inbound and outbound neighbour lists. domain/Iterator.py separates stateful BFS and DFS traversal from storage. Sample graph and coordinate files exercise file I/O; main.py runs the automated unittest suites. The implementation has no third-party runtime or test dependencies.",
+      },
+      {
+        title: "Implementation decisions",
+        content:
+          "Neighbour lists keep the representation easy to inspect. Shortest-path routines use heapq and return the path, distance, and operation counters. A* validates vertex coordinates and checks that edge weights support its Euclidean heuristic. File parsing reports line-specific errors, and shortest-path routines reject negative weights even though the graph can store them.",
+      },
+      {
+        title: "Challenges",
+        content:
+          "Algorithms need clear assumptions about direction, reachability, and weights. Tests cover graph operations and regression cases around these contracts. Performance also depends on the algorithm: the bridge routine repeats BFS for each edge, while clique and travelling-salesperson searches are exhaustive. Those routines are intended for understandable, small examples rather than large-scale workloads.",
+      },
+      {
+        title: "What I learned",
+        content:
+          "The project connects abstract graph theory with concrete Python data structures, iterator state, and priority queues. It shows how representation choices affect both clarity and cost, and why an algorithm's preconditions belong in its API. Operation counters and automated tests make behavior easier to inspect beyond a single successful example.",
       },
     ],
   },

@@ -20,7 +20,6 @@ export function ExternalLink({
       {...(link.href.startsWith("https://")
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      download={link.label === "Download CV" || undefined}
     >
       {link.label}
     </a>
